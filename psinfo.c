@@ -18,9 +18,21 @@ void obtenerInformacion(proceso*,char[10]);
 void imprimirInformacion(proceso*);
 
 int main(int arg, char **args){
-    if(arg > 1){        
-        proceso pr;
-        
+    if(strcmp(args[1],"-l")==0){
+        proceso *proce;
+        printf("-- Información recolectada!!!\n\n");
+        for(int i = 2; i<arg; i++){
+            printf("Pid: %s\n",args[i]);
+            proce = (proceso*)malloc(sizeof(proceso));        
+            obtenerInformacion(proce,args[i]);              
+            imprimirInformacion(proce);   
+            printf("\n\n");
+            free(proce);
+        }
+
+    }
+    else if(arg > 1){        
+        proceso pr;        
         obtenerInformacion(&pr,args[1]);        
         imprimirInformacion(&pr);        
     }
@@ -37,8 +49,8 @@ void obtenerInformacion(proceso* pr,char ruta[10]){
      char b[25];
      file = fopen(c,"r");
         if(file == NULL){
-            printf("El proceso ingresado no existe.\n");
-            exit(1);
+            printf("El proceso no existe.\n");
+            return;
         }
 
         strcpy(pr->memoria,"-1");
