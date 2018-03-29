@@ -31,6 +31,31 @@ int main(int arg, char **args){
         }
 
     }
+    else if(strcmp(args[1],"-r")==0){
+        FILE *fl;
+        
+        char ruta[100]="psinfo-report-";
+        for(int i = 2; i<arg; i++){
+            strcat(ruta, args[i]);
+            strcat(ruta, "-");            
+        }
+        strcat(ruta, ".info");
+        fl = fopen(ruta,"w");
+
+        proceso *proce;
+
+        for(int i = 2; i<arg; i++){
+            proce = (proceso*)malloc(sizeof(proceso));        
+            obtenerInformacion(proce,args[i]);  
+            //falta recorrer las estructuras para guardarlas en el archivo
+
+            fwrite( cadena, sizeof(char), sizeof(cadena), fp );     
+
+            free(proce);     
+        }
+
+        fclose(fl);
+    }
     else if(arg > 1){        
         proceso pr;        
         obtenerInformacion(&pr,args[1]);        
