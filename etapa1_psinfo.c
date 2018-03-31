@@ -64,7 +64,7 @@ void obtenerInformacion(proceso* pr,char ruta[10]){
             if(strcmp(a, "Name") == 0){
                 strcpy(pr->nombre,b); 
             }
-            else if(strcmp(a, "VmPeak") == 0){
+            else if(strcmp(a, "VmSize") == 0){
                 strcpy(pr->memoria,b); 
             }
             else if(strcmp(a,"State")==0){

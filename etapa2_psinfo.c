@@ -27,11 +27,11 @@ void imprimirInformacion(proceso*);
 
 
 int main(int arg, char **args){
-    
+    /** Caso en el que el argumento ingresado sea -l */
     if(strcmp(args[1],"-l")==0){
         proceso *proce;
         printf("-- Información recolectada!!!\n\n");
-        for(int i = 2; i<arg; i++){
+        for(int i = 2; i<arg; i++){     /** Recorre los procesos ingresados por el usuario*/
             printf("Pid: %s\n",args[i]);
             proce = (proceso*)malloc(sizeof(proceso));        
             obtenerInformacion(proce,args[i]);              
@@ -41,6 +41,7 @@ int main(int arg, char **args){
         }
 
     }
+    /** Caso en el que el argumento ingresado sean unicamente procesos */
     else if(arg > 1){        
         proceso pr;        
         obtenerInformacion(&pr,args[1]);        
@@ -78,7 +79,7 @@ void obtenerInformacion(proceso* pr,char ruta[10]){
             if(strcmp(a, "Name") == 0){
                 strcpy(pr->nombre,b); 
             }
-            else if(strcmp(a, "VmPeak") == 0){
+            else if(strcmp(a, "VmSize") == 0){
                 strcpy(pr->memoria,b); 
             }
             else if(strcmp(a,"State")==0){
@@ -112,7 +113,7 @@ void obtenerInformacion(proceso* pr,char ruta[10]){
 void imprimirInformacion(proceso *pr){
     printf("Nombre del proceso: %s\n",pr->nombre);
     printf("Estado del proceso: %s\n",pr->estado);
-    if(strcmp(pr->memoria,"-1")==0){
+    if(strcmp(pr->memoria,"-1")==0){    /** En caso de que la imagen de memoria no se encuentre disponible, ninguna otra información de memoria lo estará */
         printf("La información de memoria no se encuentra disponible en este proceso.\n");
     }
     else{
