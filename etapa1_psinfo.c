@@ -1,3 +1,4 @@
+/** Importación de librerias */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,7 +9,6 @@
  * Estructura creada con alias para idenfiticar algunos de los elementos de un proceso
  *
  */
-
 typedef struct{
     char nombre[25];
     char estado[3];
@@ -20,9 +20,10 @@ typedef struct{
     char cnv[25];       /** Representa los cambios de contexto realizados no voluntarios */
 }proceso;
 
-/** Definicion de funciones */
+/** Definición de funciones */
 void obtenerInformacion(proceso*,char[10]);
 void imprimirInformacion(proceso*);
+
 
 int main(int arg, char **args){
     if(arg > 1){        
@@ -92,7 +93,7 @@ void obtenerInformacion(proceso* pr,char ruta[10]){
 
 /**
  * Imprime la información referente a un proceso
- * 
+ * @param pr -> contiene la información del proceso que se va imprimir (mostrar en consola)
  * 
  */
 void imprimirInformacion(proceso *pr){

@@ -1,8 +1,14 @@
+/** Importación de librerias */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+/** Definción de estructuras */
 
+/**
+ * Estructura creada con alias para idenfiticar algunos de los elementos de un proceso
+ *
+ */
 typedef struct{
     char nombre[25];
     char estado[3];
@@ -10,10 +16,11 @@ typedef struct{
     char data[25];
     char stack[25];
     char text[25];
-    char cv[25];
-    char cnv[25];
+    char cv[25];        /** Representa los cambios de contexto voluntarios */
+    char cnv[25];       /** Representa los cambios de contexto realizados no voluntarios */
 }proceso;
 
+/** Definición de funciones */
 void obtenerInformacion(proceso*,char[10]);
 void imprimirInformacion(proceso*);
 void obtenerInformacionProceso(char cadena[1000],proceso *pr, char nroProceso[10]);
@@ -70,6 +77,14 @@ int main(int arg, char **args){
     return 0;
 }
 
+/** Implementacion de funciones */
+
+/**
+ * Obtiene informacion referente a un proceso
+ * @param pr -> atributo correspondiente a una estructura tipo proceso
+ * @param ruta -> contiene el número del proceso
+ * 
+ */
 void obtenerInformacion(proceso* pr,char ruta[10]){
     char c[25] = "/proc/";
         strcat(c,ruta);
@@ -116,6 +131,11 @@ void obtenerInformacion(proceso* pr,char ruta[10]){
         fclose(file);
 }
 
+/**
+ * Imprime la información referente a un proceso
+ * @param pr -> contiene la información del proceso que se va imprimir (mostrar en consola)
+ * 
+ */
 void imprimirInformacion(proceso *pr){
     printf("Nombre del proceso: %s\n",pr->nombre);
     printf("Estado del proceso: %s\n",pr->estado);
@@ -133,7 +153,6 @@ void imprimirInformacion(proceso *pr){
 }
 
 void obtenerInformacionProceso(char cadena[1000], proceso *pr, char nroProceso[10]){
-    //char cadena[1000];
     strcat(cadena,"Pid: ");
     strcat(cadena,nroProceso);
     strcat(cadena,"\nNombre del proceso: ");
@@ -163,6 +182,5 @@ void obtenerInformacionProceso(char cadena[1000], proceso *pr, char nroProceso[1
     strcat(cadena," - ");
     strcat(cadena,pr->cnv);
     strcat(cadena,"\n\n");
-    //return cadena;
 }
 
