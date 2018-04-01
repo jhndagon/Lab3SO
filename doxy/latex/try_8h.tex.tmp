@@ -1,0 +1,92 @@
+\hypertarget{try_8h}{}\section{try.\+h File Reference}
+\label{try_8h}\index{try.\+h@{try.\+h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for try.\+h\+:
+% FIG 0
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structproceso}{proceso}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{try_8h_afb52c41a5697cd89ab163dc5d839c22b}{obtener\+Informacion} (\hyperlink{structproceso}{proceso} $\ast$, char\mbox{[}10\mbox{]})
+\item 
+void \hyperlink{try_8h_a340d0428a066cc140041d797a5502323}{imprimir\+Informacion} (\hyperlink{structproceso}{proceso} $\ast$)
+\item 
+void \hyperlink{try_8h_a278d5bc0d22935ff1cbbdf093096b91a}{obtener\+Informacion\+Proceso} (char cadena\mbox{[}1000\mbox{]}, \hyperlink{structproceso}{proceso} $\ast$pr, char nro\+Proceso\mbox{[}10\mbox{]})
+\item 
+int \hyperlink{try_8h_a943d1cf9461cf39421e29c47cddbd823}{main} (int arg, char $\ast$$\ast$args)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+John David Gonzalez -\/ Mateo Llano, \href{mailto:johnd.gonzalez@udea.edu.co}{\tt johnd.\+gonzalez@udea.\+edu.\+co} -\/ \href{mailto:mateo.llano@udea.edu.co}{\tt mateo.\+llano@udea.\+edu.\+co} 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+7 
+\end{DoxyVersion}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{try_8h_a340d0428a066cc140041d797a5502323}\label{try_8h_a340d0428a066cc140041d797a5502323}} 
+\index{try.\+h@{try.\+h}!imprimir\+Informacion@{imprimir\+Informacion}}
+\index{imprimir\+Informacion@{imprimir\+Informacion}!try.\+h@{try.\+h}}
+\subsubsection{\texorpdfstring{imprimir\+Informacion()}{imprimirInformacion()}}
+{\footnotesize\ttfamily void imprimir\+Informacion (\begin{DoxyParamCaption}\item[{\hyperlink{structproceso}{proceso} $\ast$}]{pr }\end{DoxyParamCaption})}
+
+Imprime la información referente a un proceso 
+\begin{DoxyParams}{Parameters}
+{\em pr} & -\/$>$ contiene la información del proceso que se va imprimir (mostrar en consola) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{try_8h_a943d1cf9461cf39421e29c47cddbd823}\label{try_8h_a943d1cf9461cf39421e29c47cddbd823}} 
+\index{try.\+h@{try.\+h}!main@{main}}
+\index{main@{main}!try.\+h@{try.\+h}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{arg,  }\item[{char $\ast$$\ast$}]{args }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & -\/$>$ número de parametros que se le ingresa al ejecutable \\
+\hline
+{\em args} & -\/$>$ contiene los paramatros ingresados \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{try_8h_afb52c41a5697cd89ab163dc5d839c22b}\label{try_8h_afb52c41a5697cd89ab163dc5d839c22b}} 
+\index{try.\+h@{try.\+h}!obtener\+Informacion@{obtener\+Informacion}}
+\index{obtener\+Informacion@{obtener\+Informacion}!try.\+h@{try.\+h}}
+\subsubsection{\texorpdfstring{obtener\+Informacion()}{obtenerInformacion()}}
+{\footnotesize\ttfamily int obtener\+Informacion (\begin{DoxyParamCaption}\item[{\hyperlink{structproceso}{proceso} $\ast$}]{pr,  }\item[{char}]{ruta\mbox{[}10\mbox{]} }\end{DoxyParamCaption})}
+
+Definición de funciones
+
+Implementacion de funciones Obtiene información referente a un proceso 
+\begin{DoxyParams}{Parameters}
+{\em pr} & -\/$>$ atributo correspondiente a una estructura tipo proceso \\
+\hline
+{\em ruta} & -\/$>$ contiene el número del proceso \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/$>$ 0\+: el proceso no existe, 1\+: el proceso existe 
+\end{DoxyReturn}
+\mbox{\Hypertarget{try_8h_a278d5bc0d22935ff1cbbdf093096b91a}\label{try_8h_a278d5bc0d22935ff1cbbdf093096b91a}} 
+\index{try.\+h@{try.\+h}!obtener\+Informacion\+Proceso@{obtener\+Informacion\+Proceso}}
+\index{obtener\+Informacion\+Proceso@{obtener\+Informacion\+Proceso}!try.\+h@{try.\+h}}
+\subsubsection{\texorpdfstring{obtener\+Informacion\+Proceso()}{obtenerInformacionProceso()}}
+{\footnotesize\ttfamily void obtener\+Informacion\+Proceso (\begin{DoxyParamCaption}\item[{char}]{cadena\mbox{[}1000\mbox{]},  }\item[{\hyperlink{structproceso}{proceso} $\ast$}]{pr,  }\item[{char}]{nro\+Proceso\mbox{[}10\mbox{]} }\end{DoxyParamCaption})}
+
+Concatena toda la información referente a un proceso. 
+\begin{DoxyParams}{Parameters}
+{\em cadena} & -\/$>$ Variable a la que se le almacenará la información de un proceso. \\
+\hline
+{\em pr} & -\/$>$ contiene la información del proceso que se va a concatenar \\
+\hline
+{\em nro\+Proceso} & -\/$>$ Contiene el número de proceso al cual se está accediendo a su información \\
+\hline
+\end{DoxyParams}
