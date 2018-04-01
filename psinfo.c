@@ -1,3 +1,10 @@
+/**
+ * @file 
+ * @author John David Gonzalez - Mateo Llano, johnd.gonzalez@udea.edu.co - mateo.llano@udea.edu.co
+ * @version 1.7
+ * 
+ */
+
 /** Importación de librerias */
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,12 +29,18 @@ typedef struct
 } proceso;
 
 /** Definición de funciones */
-void obtenerInformacion(proceso *, char[10]);
+int obtenerInformacion(proceso *, char[10]);
 void imprimirInformacion(proceso *);
 void obtenerInformacionProceso(char cadena[1000], proceso *pr, char nroProceso[10]);
 
+/**
+ * 
+ * @param arg -> número de parametros que se le ingresa al ejecutable
+ * @param args -> contiene los paramatros ingresados
+ */
 int main(int arg, char **args)
 {
+    //Con el argumento -l pasado como parametro se muestra la información de los porcesos ingresados.
     if (strcmp(args[1], "-l") == 0)
     {
         proceso *proce;
@@ -37,7 +50,9 @@ int main(int arg, char **args)
         {
             printf("Pid: %s\n", args[i]);
             proce = (proceso *)malloc(sizeof(proceso));
-            obtenerInformacion(proce, args[i]);
+            if(obtenerInformacion(proce, args[i])==0){
+                printf("El proceso no existe.\n");
+            }            
             imprimirInformacion(proce);
             printf("\n\n");
             free(proce);
@@ -63,7 +78,14 @@ int main(int arg, char **args)
         for (int i = 2; i < arg; i++)
         {
             proce = (proceso *)malloc(sizeof(proceso));
-            obtenerInformacion(proce, args[i]);
+            if(obtenerInformacion(proce, args[i])==0){
+                strcat(cadena,"El proceso ");
+                strcat(cadena,args[i]);
+                strcat(cadena, " no existe.\n\n");
+                fputs(cadena,fl);
+                strcpy(cadena,"");
+                continue;
+            }
             obtenerInformacionProceso(cadena, proce, args[i]);
 
             fputs(cadena, fl);
@@ -76,7 +98,10 @@ int main(int arg, char **args)
     else if (arg > 1)
     {
         proceso pr;
-        obtenerInformacion(&pr, args[1]);
+        if(obtenerInformacion(&pr, args[1])==0){
+            printf("El proceso no existe.\n");
+            return 0;            
+        }
         imprimirInformacion(&pr);
     }
 
@@ -86,12 +111,13 @@ int main(int arg, char **args)
 /** Implementacion de funciones */
 
 /**
- * Obtiene informacion referente a un proceso
+ * Obtiene información referente a un proceso
  * @param pr -> atributo correspondiente a una estructura tipo proceso
  * @param ruta -> contiene el número del proceso
+ * @return -> 0: el proceso no existe, 1: el proceso existe
  * 
  */
-void obtenerInformacion(proceso *pr, char ruta[10])
+int obtenerInformacion(proceso *pr, char ruta[10])
 {
     char c[25] = "/proc/";
     strcat(c, ruta);
@@ -101,10 +127,8 @@ void obtenerInformacion(proceso *pr, char ruta[10])
     char b[25];
     file = fopen(c, "r");
     strcpy(pr->memoria, "-1");
-    if (file == NULL)
-    {
-        printf("El proceso no existe.\n");
-        return;
+    if (file == NULL){        
+        return 0;
     }
     while (fscanf(file, " %[^:]:%s", a, b) > 0)
     {
@@ -143,6 +167,7 @@ void obtenerInformacion(proceso *pr, char ruta[10])
         }
     }
     fclose(file);
+    return 1;
 }
 
 /**
@@ -185,7 +210,6 @@ void obtenerInformacionProceso(char cadena[1000], proceso *pr, char nroProceso[1
     if (strcmp(pr->memoria, "-1") == 0)
     {
         strcat(cadena, "\nLa información de memoria no se encuentra disponible en este proceso.");
-        strcat(cadena, pr->memoria);
     }
     else
     {
